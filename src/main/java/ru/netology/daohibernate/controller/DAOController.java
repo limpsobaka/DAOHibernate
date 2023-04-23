@@ -1,25 +1,34 @@
 package ru.netology.daohibernate.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.netology.daohibernate.entity.Person;
-import ru.netology.daohibernate.repository.DAORepository;
+import ru.netology.daohibernate.repositories.PersonRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
 public class DAOController {
-  private final DAORepository daoRepository;
-
-  public DAOController(DAORepository daoRepository) {
-    this.daoRepository = daoRepository;
-  }
+  @Autowired
+  PersonRepository personrepository;
 
   @GetMapping("persons/by-city")
   public List<Person> getPersonsByCity(@RequestParam("city") String city) {
-    return daoRepository.getPersonsByCity(city);
+    return personrepository.findAllByCityOfLiving(city);
+  }
+
+  @GetMapping("persons/by-age-less-then")
+  public List<Person> getPersonsByCity(@RequestParam("age") int age) {
+    return personrepository.findAllByAgeLessThan(age);
+  }
+
+  @GetMapping("persons/by-name-and-surname")
+  public Optional<Person> getPersonsByCity(@RequestParam("name") String name, @RequestParam("surname") String surname) {
+    return personrepository.findByNameAndSurname(name, surname);
   }
 }
