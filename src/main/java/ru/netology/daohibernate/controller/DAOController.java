@@ -24,7 +24,7 @@ public class DAOController {
 
   @GetMapping("persons/by-age-less-then")
   public List<Person> getPersonsByCity(@RequestParam("age") int age) {
-    return personrepository.findAllByAgeLessThan(age);
+    return personrepository.findAllByAgeLessThanOrderByAge(age);
   }
 
   @GetMapping("persons/by-name-and-surname")

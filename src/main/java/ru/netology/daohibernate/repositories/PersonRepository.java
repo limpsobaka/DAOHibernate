@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface PersonRepository extends JpaRepository<Person, Long> {
   List<Person> findAllByCityOfLiving(String cityOfLiving);
 
-  List<Person> findAllByAgeLessThan(int age);
+  List<Person> findAllByAgeLessThanOrderByAge(int age);
 
   Optional<Person> findByNameAndSurname(String name, String surname);
 }
