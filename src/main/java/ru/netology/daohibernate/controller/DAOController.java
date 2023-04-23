@@ -19,16 +19,16 @@ public class DAOController {
 
   @GetMapping("persons/by-city")
   public List<Person> getPersonsByCity(@RequestParam("city") String city) {
-    return personrepository.findAllByCityOfLiving(city);
+    return personrepository.findPersonsByCityOfLiving(city);
   }
 
   @GetMapping("persons/by-age-less-then")
   public List<Person> getPersonsByCity(@RequestParam("age") int age) {
-    return personrepository.findAllByAgeLessThanOrderByAge(age);
+    return personrepository.findPersonsByAgeLessThanAgeAndSortedByAge(age);
   }
 
   @GetMapping("persons/by-name-and-surname")
   public Optional<Person> getPersonsByCity(@RequestParam("name") String name, @RequestParam("surname") String surname) {
-    return personrepository.findByNameAndSurname(name, surname);
+    return personrepository.findPersonsByNameAndSurname(name, surname);
   }
 }
