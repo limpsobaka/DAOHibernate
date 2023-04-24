@@ -1,6 +1,5 @@
 package ru.netology.daohibernate.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,8 +13,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/")
 public class DAOController {
-  @Autowired
+
   PersonRepository personrepository;
+
+  public DAOController(PersonRepository personrepository) {
+    this.personrepository = personrepository;
+  }
 
   @GetMapping("persons/by-city")
   public List<Person> getPersonsByCity(@RequestParam("city") String city) {
