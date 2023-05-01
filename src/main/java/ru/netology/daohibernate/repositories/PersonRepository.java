@@ -17,4 +17,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
   @Query("select p from Person p where p.name = :name and p.surname = :surname")
   Optional<Person> findPersonsByNameAndSurname(@Param("name") String name, @Param("surname") String surname);
+
+  @Query("select p from Person p")
+  List<Person> getAllPersons();
 }
